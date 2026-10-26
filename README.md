@@ -1,10 +1,15 @@
-# Enterprise AI MCP Server
+# Portfolio and architecture at a glance
 
-**.NET 10 · C# · Python 3.12 · Model Context Protocol · Azure OpenAI (optional)**
+**C# / .NET 10 · Model Context Protocol (MCP) · Python · Azure OpenAI (optional)**
 
-A hands-on reference implementation of an MCP-based incident investigation platform. The server exposes typed tools for incident lookup, service-health inspection, advisory AI diagnosis, and **simulation-only** recovery planning. A Python client consumes the tools over stdio.
+This portfolio project shows how a typed MCP server can help investigate **synthetic incidents**, inspect service health, generate advisory AI diagnoses, and preview recovery plans. It is a **simulation**, not a live incident-management or remediation product.
 
-> **Portfolio demo, not a production incident-response system.** All incident data is synthetic. No real remediation is possible.
+## What a reviewer can explore in five minutes
+
+1. **[Architecture](docs/architecture.md)** — MCP stdio transport, read-only incident tools, optional AI, and dry-run recovery planning.
+2. **[Demo](docs/demo.md)** — a reproducible walkthrough without production systems.
+3. **[Tests and evaluations](#tests-and-evaluation)** — .NET unit tests, Python tests, and deterministic fixtures.
+4. **[Recovery safety model](docs/recovery-workflows.md)** — allowlisted planning and in-memory audit trails; no infrastructure execution.
 
 ## Architecture
 
@@ -28,7 +33,7 @@ flowchart LR
 | Testing | xUnit, pytest, MCP stdio E2E | CI |
 | Evaluation | Deterministic MCP fixtures + JSON report | Not AI quality scoring |
 
-## Quick start
+## Run it locally
 
 Requires the **.NET 10 SDK** and **Python 3.12+**. From the repository root:
 
@@ -52,10 +57,8 @@ python evals/run_evals.py --output evals/results.json
 
 The evaluation suite checks known/unknown incident handling and recovery safety responses. **It does not measure AI diagnosis accuracy.**
 
-## Documentation
+## More documentation
 
-- [Demo walkthrough](docs/demo.md)
-- [Architecture](docs/architecture.md)
 - [Azure OpenAI configuration](docs/azure-openai.md)
 - [Recovery safety model](docs/recovery-workflows.md)
 - [Evaluation methodology](docs/evaluation.md)
